@@ -1,13 +1,16 @@
 //2-player Tic-Tac-Toe
 
 #include <iostream>
-using namespace std;
+#include <array>
+#include <cmath>
+#include <cstdlib>
+
 char matrix[3][3] = { '7', '8', '9', '4', '5', '6', '1', '2', '3' };
 char player = 'X';
 int n;
+
 void Draw()
 {
-    system("cls");
     cout << "Tic Tac Toe !\n" << endl;
     for (int i = 0; i < 3; i++)
     {
@@ -18,6 +21,7 @@ void Draw()
         cout << endl;
     }
 }
+
 void Input()
 {
     int a;
@@ -116,6 +120,7 @@ void Input()
     }
 
 }
+
 void TogglePlayer()
 {
     if (player == 'X')
@@ -123,9 +128,10 @@ void TogglePlayer()
     else
         player = 'X';
 }
-char Win()
+
+template <typename T>
+T Win()
 {
-    //first player
     if (matrix[0][0] == 'X' && matrix[0][1] == 'X' && matrix[0][2] == 'X')
         return 'X';
     if (matrix[1][0] == 'X' && matrix[1][1] == 'X' && matrix[1][2] == 'X')
@@ -144,8 +150,7 @@ char Win()
         return 'X';
     if (matrix[2][0] == 'X' && matrix[1][1] == 'X' && matrix[0][2] == 'X')
         return 'X';
-
-    //second player
+        
     if (matrix[0][0] == 'O' && matrix[0][1] == 'O' && matrix[0][2] == 'O')
         return 'O';
     if (matrix[1][0] == 'O' && matrix[1][1] == 'O' && matrix[1][2] == 'O')
@@ -164,14 +169,13 @@ char Win()
         return 'O';
     if (matrix[2][0] == 'O' && matrix[1][1] == 'O' && matrix[0][2] == 'O')
         return 'O';
-
-    return '/';
 }
 
 int main()
 {
     n = 0;
     Draw();
+    
     while (1)
     {
         n++;
@@ -194,6 +198,5 @@ int main()
         }
         TogglePlayer();
     }
-    system("pause");
     return 0;
 }
